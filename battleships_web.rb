@@ -7,7 +7,7 @@ require_relative 'ship'
 
 class BattleshipsWeb < Sinatra::Base
 
-  set :views, proc { File.join(root, '..', 'views') }
+  set :views, proc { File.join(root, 'views') }
 
   get '/' do
     erb :index

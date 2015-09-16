@@ -18,10 +18,4 @@ feature 'Starting a new game' do
     click_button 'New Game'
     expect(page).to have_content "What's your name?"
   end
-  scenario 'Creates a grid' do
-    visit '/name_input'
-    fill_in 'name', with: 'Emily'
-    click_button 'New Game'
-    expect(page).to have_content '<div'
-  end
 end
