@@ -1,8 +1,7 @@
 <% if @name && !@name.empty? %>
   <%= @name %>'s Game
-  <%= @board.show %>
 <% else %>
-  <form action="/name_input"?>
+  <form action="/name_input" method="post">
     What's your name?
     <input type="text" name="name" required autofocus>
     <input type="submit" value="New Game">

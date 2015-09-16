@@ -4,28 +4,36 @@ require_relative 'lib/cell'
 require_relative 'lib/water'
 require_relative 'lib/ship'
 require_relative 'lib/player'
-
-# enable :sessions
+require_relative 'game_setup'
 
 class BattleshipsWeb < Sinatra::Base
 
   set :views, proc { File.join(root, 'views') }
+  enable :sessions
 
   get '/' do
     erb :index
   end
 
   get '/name_input' do
-    @name = params[:name]
-    @board = Board.new(Cell)
-    @ship = Ship.new(4)
-    @ship2 = Ship.new(2)
-    @board.place(@ship, :A1)
-    @board.place(@ship2, :D3, :vertically)
-    @board.shoot_at(:A1)
-    @board.shoot_at(:E4)
     erb :name_input
   end
+
+  post '/name_input' do
+    session[:name] = params[:name]
+    p session[:name]
+    redirect ('/game_setup')
+  end
+
+  get '/game_setup' do
+    p session[:name]
+    erb :game_setup
+  end
+
+  post '/game_setup' do
+    redirect ('/game_setup')
+  end
+
 
   # start the server if ruby file executed directly
   run! if app_file == $0
