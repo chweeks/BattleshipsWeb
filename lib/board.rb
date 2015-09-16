@@ -22,7 +22,7 @@ class Board
 	          padding: 0px;
 	          background: rgb(255, 0, 0);'></div>"
 				elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
-				  output += "<div style= 'width: 65px; height: 65px;
+				  output += "<div class='Ship' style= 'width: 65px; height: 65px;
 					  display: inline-block;
 					  border: 1px rgb(89,89,89) solid;
 	          padding: 0px;
