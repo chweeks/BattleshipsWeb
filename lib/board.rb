@@ -3,8 +3,8 @@ class Board
 
 	def initialize(cell)
 		@grid = {}
-		[*1..10].each do |n|
-			[*"A".."J"].each do |l|
+		[*"A".."J"].each do |l|
+			[*1..10].each do |n|
 			  @grid["#{l}#{n}".to_sym] = cell.new
 		    @grid["#{l}#{n}".to_sym].content = Water.new
 		  end
@@ -13,15 +13,15 @@ class Board
 
 	def show
 		output = "<div style= 'width: 700px; height: 650px;'>"
-		[*1..10].each do |n|
-			[*"A".."J"].each do |l|
+		[*"A".."J"].each do |l|
+			[*1..10].each do |n|
 				if grid["#{l}#{n}".to_sym].hit?
 					output += "<div style= 'width: 65px; height: 65px;
 					  display: inline-block;
 					  border: 1px rgb(89,89,89) solid;
 	          padding: 0px;
 	          background: rgb(255, 0, 0);'></div>"
-				elsif grid["#{l}#{n}".to_sym].is_a? Ship
+				elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
 				  output += "<div style= 'width: 65px; height: 65px;
 					  display: inline-block;
 					  border: 1px rgb(89,89,89) solid;
