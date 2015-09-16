@@ -1,6 +1,6 @@
 <% if @name && !@name.empty? %>
   <%= @name %>'s Game
-  <%= @board.show2 %>
+  <%= @board.show %>
 <% else %>
   <form action="/name_input"?>
     What's your name?

@@ -12,22 +12,6 @@ class Board
   end
 
 	def show
-		output = "<table><tr></tr>"
-		x = 0
-		grid.each do |cell|
-			if x % 10 == 0
-				output += "</tr><tr>"
-				output += "<th> #{cell} </th>"
-				x += 1
-			else
-				output += "<th> #{cell} </th>"
-				x += 1
-			end
-		end
-		output += "</table>"
-	end
-
-	def show2
 		output = "<div style= 'width: 700px; height: 650px;'>"
 		[*1..10].each do |n|
 			[*"A".."J"].each do |l|

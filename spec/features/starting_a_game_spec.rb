@@ -22,6 +22,6 @@ feature 'Starting a new game' do
     visit '/name_input'
     fill_in 'name', with: 'Emily'
     click_button 'New Game'
-    expect(page).to have_content 'J10'
+    expect(page).to have_content '<div'
   end
 end
