@@ -21,12 +21,13 @@ class BattleshipsWeb < Sinatra::Base
 
   post '/name_input' do
     session[:name] = params[:name]
-    p session[:name]
+    redirect ('/name_input') if params[:name].empty?
     redirect ('/game_setup')
   end
 
   get '/game_setup' do
     p session[:name]
+    @name = session[:name]
     erb :game_setup
   end
 
