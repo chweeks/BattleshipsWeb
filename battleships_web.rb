@@ -30,14 +30,17 @@ class BattleshipsWeb < Sinatra::Base
       @name = session[:name]
       @coord = session[:coord].to_sym
       $board1.shoot_at(@coord)
+      return erb :game_over if !$board1.floating_ships?
       @grid = $board1.show
       erb :game_setup
     else
       $board1 = Board.new(Cell)
       @name = session[:name]
-      game = Game.new
-      player1 = Player.new
-      $board1.place(Ship.new(3), :A1)
+      $board1.rand_place(Ship.battleship)
+      $board1.rand_place(Ship.destroyer)
+      $board1.rand_place(Ship.aircraft_carrier)
+      $board1.rand_place(Ship.submarine)
+      $board1.rand_place(Ship.patrol_boat)
       @grid = $board1.show
       erb :game_setup
     end

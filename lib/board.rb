@@ -21,14 +21,8 @@ class Board
              border: 1px rgb(89,89,89) solid;
              padding: 0px;
              background: rgb(0, 255, 0);'></div>"
-	      # elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
-	      #   output += "<div class='Ship' style= 'width: 65px; height: 65px;
-	      #     display: inline-block;
-	      #     border: 1px rgb(89,89,89) solid;
-	      #     padding: 0px;
-	      #     background: rgb(171, 95, 36);'></div>"
 			  elsif grid["#{l}#{n}".to_sym].hit?
-					output += "<div class='Ship' style= 'width: 65px; height: 65px;
+					output += "<div class='miss' style= 'width: 65px; height: 65px;
 					  display: inline-block;
 				  	border: 1px rgb(89,89,89) solid;
 				  	padding: 0px;
@@ -52,8 +46,8 @@ class Board
 	end
 
 	def rand_coord
-    letter = ["A".."J"].shuffle.pop
-    number = [1..10].shuffle.pop
+    letter = [*"A".."J"].shuffle.pop
+    number = [*1..10].shuffle.pop
     rand_coord = letter + number.to_s
     rand_coord.to_sym
   end
@@ -61,6 +55,16 @@ class Board
   def rand_orientation
     rand_orientation = [:horizontal, :vertical].shuffle.pop
   end
+
+	def rand_place(ship)
+		coord = rand_coord
+		orientation = rand_orientation
+		begin
+			place(ship, coord, orientation)
+		rescue
+			rand_place(ship)
+		end
+	end
 
 	def floating_ships?
 		ships.any?(&:floating?)
