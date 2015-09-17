@@ -20,16 +20,4 @@ feature 'Starting a new game' do
     click_button 'New Game'
     expect(page).to have_content "What's your name?"
   end
-
-  scenario 'Asks for ship positions' do
-    visit '/game_setup'
-    expect(page).to have_content "Set Aircraft Carrier position:"
-  end
-
-  scenario 'Adds ships to board' do
-    visit '/game_setup'
-    fill_in 'position1', with: 'A1'
-    click_button 'Set'
-    expect(page).to have_CSS('div.Ship')
-  end
 end

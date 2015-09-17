@@ -12,7 +12,7 @@ class Board
   end
 
 	def show
-    output = "<div style= 'width: 700px; height: 650px;'>"
+    output = "<div style= 'width: 680px; height: 650px; float:left'>"
 	  [*"A".."J"].each do |l|
 	    [*1..10].each do |n|
 	      if grid["#{l}#{n}".to_sym].hit? && grid["#{l}#{n}".to_sym].content.is_a?(Ship)

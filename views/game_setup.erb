@@ -1,8 +1,11 @@
-<%= @name %>'s Game
+<div style = 'float: top; text-align:center'>
+<h3><%= @name %>'s Game</h3>
+</div>
 
 <%= @grid %>
-
-<form action="/name_input" method="post">
+<div>
+<form action="/game_setup" method="post">
     Choose coordinate to shoot
-    <input type="text" name="name" autofocus>
+    <input type="text" name="coord" autofocus>
 </form>
+<div>
