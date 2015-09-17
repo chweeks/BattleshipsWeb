@@ -12,30 +12,36 @@ class Board
   end
 
 	def show
-		output = "<div style= 'width: 700px; height: 650px;'>"
-		[*"A".."J"].each do |l|
-			[*1..10].each do |n|
-				if grid["#{l}#{n}".to_sym].hit?
-					output += "<div style= 'width: 65px; height: 65px;
+    output = "<div style= 'width: 700px; height: 650px;'>"
+	  [*"A".."J"].each do |l|
+	    [*1..10].each do |n|
+	      if grid["#{l}#{n}".to_sym].hit? && grid["#{l}#{n}".to_sym].content.is_a?(Ship)
+	        output += "<div class='hit_ship' style= 'width: 65px; height: 65px;
+             display: inline-block;
+             border: 1px rgb(89,89,89) solid;
+             padding: 0px;
+             background: rgb(0, 255, 0);'></div>"
+	      # elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
+	      #   output += "<div class='Ship' style= 'width: 65px; height: 65px;
+	      #     display: inline-block;
+	      #     border: 1px rgb(89,89,89) solid;
+	      #     padding: 0px;
+	      #     background: rgb(171, 95, 36);'></div>"
+			  elsif grid["#{l}#{n}".to_sym].hit?
+					output += "<div class='Ship' style= 'width: 65px; height: 65px;
 					  display: inline-block;
-					  border: 1px rgb(89,89,89) solid;
-	          padding: 0px;
-	          background: rgb(255, 0, 0);'></div>"
-				elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
-				  output += "<div class='Ship' style= 'width: 65px; height: 65px;
-					  display: inline-block;
-					  border: 1px rgb(89,89,89) solid;
-	          padding: 0px;
-	          background: rgb(171, 95, 36);'></div>"
-				else
-					output += "<div style= 'width: 65px; height: 65px;
-					  display: inline-block;
-					  border: 1px rgb(89,89,89) solid;
+				  	border: 1px rgb(89,89,89) solid;
+				  	padding: 0px;
+				  	background: rgb(255, 0, 0);'></div>"
+	      else
+          output += "<div class='water' style= 'width: 65px; height: 65px;
+	          display: inline-block;
+	          border: 1px rgb(89,89,89) solid;
 	          padding: 0px;
 	          background: rgb(73, 244, 249);'></div>"
-				end
-			end
-		end
+	      end
+	    end
+	  end
 		output += "</div>"
 	end
 

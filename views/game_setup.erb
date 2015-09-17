@@ -1,33 +1,8 @@
 <%= @name %>'s Game
-<br>
-<br>
-<%= game = Game.new
-  player1 = Player.new
-  board1 = Board.new(Cell)
-  game.add_player(player1)
-  player1.board = board1
-  ' '
-  %>
 
-<form action="/game_setup" method: "post">
-  Set Aircraft Carrier position:
-  <input type="text" name="position1" autofocus>
-  <br>
-  <br>
-  Set Battleship position:
-  <input type="text" name="position2" autofocus>
-  <br>
-  <br>
-  Set Destroyer position:
-  <input type="text" name="position3" autofocus>
-  <br>
-  <br>
-  Set Submarine position:
-  <input type="text" name="position4" autofocus>
-  <br><br>
-  Set Patrol Boat position:
-  <input type="text" name="position5" autofocus>
-  <br>
-  <br>
-  <input type="submit" value="Set">
+<%= @grid %>
+
+<form action="/name_input" method="post">
+    Choose coordinate to shoot
+    <input type="text" name="name" autofocus>
 </form>

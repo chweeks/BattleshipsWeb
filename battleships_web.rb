@@ -11,6 +11,8 @@ class BattleshipsWeb < Sinatra::Base
   set :views, proc { File.join(root, 'views') }
   enable :sessions
 
+  $board1 = Board.new(Cell)
+
   get '/' do
     erb :index
   end
@@ -26,8 +28,13 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/game_setup' do
-    p session[:name]
     @name = session[:name]
+    game = Game.new
+    player1 = Player.new
+    $board1.place(Ship.new(3), :A1)
+    $board1.shoot_at(:A1)
+    $board1.shoot_at(:B2)
+    @grid = $board1.show
     erb :game_setup
   end
 
