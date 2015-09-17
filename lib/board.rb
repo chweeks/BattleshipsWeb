@@ -21,6 +21,12 @@ class Board
              border: 1px rgb(89,89,89) solid;
              padding: 0px;
              background: rgb(0, 255, 0);'></div>"
+			 elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
+				output += "<div class='miss' style= 'width: 65px; height: 65px;
+					display: inline-block;
+					border: 1px rgb(89,89,89) solid;
+					padding: 0px;
+					background: rgb(255, 255, 0);'></div>"
 			  elsif grid["#{l}#{n}".to_sym].hit?
 					output += "<div class='miss' style= 'width: 65px; height: 65px;
 					  display: inline-block;

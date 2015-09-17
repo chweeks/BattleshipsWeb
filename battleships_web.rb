@@ -28,7 +28,7 @@ class BattleshipsWeb < Sinatra::Base
   get '/game_setup' do
     if $board1
       @name = session[:name]
-      @coord = session[:coord].to_sym
+    p  @coord = session[:coord].to_sym
       $board1.shoot_at(@coord)
       return erb :game_over if !$board1.floating_ships?
       @grid = $board1.show

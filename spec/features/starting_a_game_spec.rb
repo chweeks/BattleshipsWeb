@@ -20,4 +20,10 @@ feature 'Starting a new game' do
     click_button 'New Game'
     expect(page).to have_content "What's your name?"
   end
+
+  scenario 'Asks for shot coordinate' do
+    visit '/game_setup'
+    fill_in 'coord', with: 'A1'
+    expect(page).to have_content "Choose coordinate to shoot"
+  end
 end
