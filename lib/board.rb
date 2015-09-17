@@ -51,6 +51,17 @@ class Board
 		put_on_grid_if_possible(coords, ship)
 	end
 
+	def rand_coord
+    letter = ["A".."J"].shuffle.pop
+    number = [1..10].shuffle.pop
+    rand_coord = letter + number.to_s
+    rand_coord.to_sym
+  end
+
+  def rand_orientation
+    rand_orientation = [:horizontal, :vertical].shuffle.pop
+  end
+
 	def floating_ships?
 		ships.any?(&:floating?)
 	end
