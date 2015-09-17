@@ -28,8 +28,9 @@ class BattleshipsWeb < Sinatra::Base
   get '/game_setup' do
     if $board1
       @name = session[:name]
+      @coord = session[:coord].to_sym
+      $board1.shoot_at(@coord)
       @grid = $board1.show
-      @coord = session[:coord]
       erb :game_setup
     else
       $board1 = Board.new(Cell)
@@ -37,8 +38,6 @@ class BattleshipsWeb < Sinatra::Base
       game = Game.new
       player1 = Player.new
       $board1.place(Ship.new(3), :A1)
-      $board1.shoot_at(:A1)
-      $board1.shoot_at(:B2)
       @grid = $board1.show
       erb :game_setup
     end
