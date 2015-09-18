@@ -28,27 +28,31 @@ class BattleshipsWeb < Sinatra::Base
   get '/game_setup' do
     if $board1
       @name = session[:name]
-    p  @coord = session[:coord].to_sym
-      $board1.shoot_at(@coord)
-      return erb :game_over if !$board1.floating_ships?
-      @grid = $board1.show
-      erb :game_setup
+      $board1.place(Ship.aircraft_carrier, session[:coord_ac].to_sym,:horizontally)
+      $board1.place(Ship.destroyer, session[:coord_des].to_sym, :horizontally)
+      $board1.place(Ship.battleship, session[:coord_bat].to_sym, :horizontally)
+      $board1.place(Ship.submarine, session[:coord_sub].to_sym, :horizontally)
+      $board1.place(Ship.patrol_boat, session[:coord_pb].to_sym, :horizontally)
+      erb :gameplay
     else
       $board1 = Board.new(Cell)
       @name = session[:name]
-      $board1.rand_place(Ship.battleship)
-      $board1.rand_place(Ship.destroyer)
-      $board1.rand_place(Ship.aircraft_carrier)
-      $board1.rand_place(Ship.submarine)
-      $board1.rand_place(Ship.patrol_boat)
       @grid = $board1.show
       erb :game_setup
     end
   end
 
   post '/game_setup' do
-    session[:coord] = params[:coord]
+    session[:coord_ac] = params[:coord_ac]
+    session[:coord_des] = params[:coord_des]
+    session[:coord_bat] = params[:coord_bat]
+    session[:coord_sub] = params[:coord_sub]
+    session[:coord_pb] = params[:coord_pb]
     redirect ('/game_setup')
+  end
+
+  get '/gameplay' do
+    erb :gameplay
   end
 
 

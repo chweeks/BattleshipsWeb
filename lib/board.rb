@@ -12,29 +12,29 @@ class Board
   end
 
 	def show
-    output = "<div style= 'width: 680px; height: 650px; float:left'>"
+    output = "<div style= 'width: 600px; height: 680px; float:right'>"
 	  [*"A".."J"].each do |l|
 	    [*1..10].each do |n|
 	      if grid["#{l}#{n}".to_sym].hit? && grid["#{l}#{n}".to_sym].content.is_a?(Ship)
-	        output += "<div class='hit_ship' style= 'width: 65px; height: 65px;
+	        output += "<div class='hit_ship' style= 'width: 55px; height: 55px;
              display: inline-block;
              border: 1px rgb(89,89,89) solid;
              padding: 0px;
              background: rgb(0, 255, 0);'></div>"
 			 elsif grid["#{l}#{n}".to_sym].content.is_a?(Ship)
-				output += "<div class='miss' style= 'width: 65px; height: 65px;
+				output += "<div class='miss' style= 'width: 55px; height: 55px;
 					display: inline-block;
 					border: 1px rgb(89,89,89) solid;
 					padding: 0px;
-					background: rgb(255, 255, 0);'></div>"
+					background: rgb(160,82,45);'></div>"
 			  elsif grid["#{l}#{n}".to_sym].hit?
-					output += "<div class='miss' style= 'width: 65px; height: 65px;
+					output += "<div class='miss' style= 'width: 55px; height: 55px;
 					  display: inline-block;
 				  	border: 1px rgb(89,89,89) solid;
 				  	padding: 0px;
 				  	background: rgb(255, 0, 0);'></div>"
 	      else
-          output += "<div class='water' style= 'width: 65px; height: 65px;
+          output += "<div class='water' style= 'width: 55px; height: 55px;
 	          display: inline-block;
 	          border: 1px rgb(89,89,89) solid;
 	          padding: 0px;

@@ -1,11 +1,33 @@
-<div style = 'float: top; text-align:center'>
-<h3><%= @name %>'s Game</h3>
-</div>
-
-<%= @grid %>
-<div>
-<form action="/game_setup" method="post">
-    Choose coordinate to shoot
-    <input type="text" name="coord" autofocus>
-</form>
-<div>
+<body>
+  <div style = 'float: top; text-align: center'>
+    <h3>Battleships</h3>
+  </div>
+  <%= @grid %>
+  <div style = 'width: 330px; float: left; margin-left: 200px;
+      margin-top: 140px'>
+    <%= @name %> place your boats!
+    <br>
+    <br>
+    <form action="/game_setup" method="post">
+      Place Your Aircraft Carrier
+    <input type="text" name="coord_ac" autofocus>
+    <br>
+    <br>
+      Place Your Destroyer
+    <input type="text" name="coord_des" autofocus>
+    <br>
+    <br>
+      Place Your Battleship
+    <input type="text" name="coord_bat" autofocus>
+    <br>
+    <br>
+      Place Your Submarine
+    <input type="text" name="coord_sub" autofocus>
+    <br>
+    <br>
+      Place Your Patrol Boat
+    <input type="text" name="coord_pb" autofocus>
+    <input type="submit" value="Place Boats">
+    </form>
+  </div>
+</body>

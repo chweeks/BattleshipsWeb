@@ -12,7 +12,7 @@ feature 'Starting a new game' do
     visit '/name_input'
     fill_in 'name', with: 'Emily'
     click_button 'New Game'
-    expect(page).to have_content "Emily's Game"
+    expect(page).to have_content "Battleships"
   end
 
   scenario 'Receives no name' do
@@ -21,9 +21,9 @@ feature 'Starting a new game' do
     expect(page).to have_content "What's your name?"
   end
 
-  scenario 'Asks for shot coordinate' do
+  scenario 'Asks you to place boats' do
+    $board1 = nil
     visit '/game_setup'
-    fill_in 'coord', with: 'A1'
-    expect(page).to have_content "Choose coordinate to shoot"
+    expect(page).to have_content "place your boats"
   end
 end
