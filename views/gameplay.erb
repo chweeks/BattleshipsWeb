@@ -1,14 +1,21 @@
 <body>
+  <div style = 'text-align: center'>
+    <form action="/gameplay" method="post">
+      Choose coordinate to shoot
+      <input type="text" name="coord" autofocus>
+    </form>
+  </div>
   <div style = 'float: right; margin-right: 275px;'>
     <%=@name%>'s Board
   </div>
-  <div style = 'float:left; margin-left: 275px;'>
+  <div style = 'float:left; margin-left: 150px;'>
     Opponents' Board
   </div>
-  <div style= 'width: 600px; height: 680px; float:right; margin-top: 10px'>
+  <br>
+  <div style= 'width: 600px; height: 680px; float:right;'>
     <%= @grid %>
   </div>
- <div style= 'width: 600px; height: 680px; float:left; margin-top: 10px;'>
+ <div style= 'width: 600px; height: 680px; float:left;'>
    <%= @grid2 %>
  </div>
 </body>

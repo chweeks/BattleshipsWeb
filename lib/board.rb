@@ -45,6 +45,34 @@ class Board
 		output
 	end
 
+	def show_invis
+		output = ""
+	  [*"A".."J"].each do |l|
+	    [*1..10].each do |n|
+	      if grid["#{l}#{n}".to_sym].hit? && grid["#{l}#{n}".to_sym].content.is_a?(Ship)
+	        output += "<div class='hit_ship' style= 'width: 55px; height: 55px;
+             display: inline-block;
+             border: 1px rgb(89,89,89) solid;
+             padding: 0px;
+             background: rgb(0, 255, 0);'></div>"
+			  elsif grid["#{l}#{n}".to_sym].hit?
+					output += "<div class='miss' style= 'width: 55px; height: 55px;
+					  display: inline-block;
+				  	border: 1px rgb(89,89,89) solid;
+				  	padding: 0px;
+				  	background: rgb(255, 0, 0);'></div>"
+	      else
+          output += "<div class='water' style= 'width: 55px; height: 55px;
+	          display: inline-block;
+	          border: 1px rgb(89,89,89) solid;
+	          padding: 0px;
+	          background: rgb(73, 244, 249);'></div>"
+	      end
+	    end
+	  end
+		output
+	end
+
 	def place(ship, coord, orientation = :horizontally)
 		coords = [coord]
 		((ship.size)-1).times{coords << next_coord(coords.last, orientation)}

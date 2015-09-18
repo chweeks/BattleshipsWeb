@@ -36,7 +36,6 @@ class BattleshipsWeb < Sinatra::Base
       redirect ('/gameplay')
     else
       $board1 = Board.new(Cell)
-      $board2 = Board.new(Cell)
       @name = session[:name]
       @grid = $board1.show
       erb :game_setup
@@ -53,12 +52,33 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/gameplay' do
-    @name = session[:name]
-    @grid = $board1.show
-    @grid2 = $board2.show
-    erb :gameplay
+    if $board2
+      @name = session[:name]
+      @coord = session[:coord].to_sym
+      $board2.shoot_at(@coord)
+      return erb :game_over_win if !$board2.floating_ships?
+      return erb :game_over_lose if !$board2.floating_ships?
+      @grid = $board1.show
+      @grid2 = $board2.show_invis
+      erb :gameplay
+    else
+      $board2 = Board.new(Cell)
+      @name = session[:name]
+      $board2.rand_place(Ship.battleship)
+      $board2.rand_place(Ship.destroyer)
+      $board2.rand_place(Ship.aircraft_carrier)
+      $board2.rand_place(Ship.submarine)
+      $board2.rand_place(Ship.patrol_boat)
+      @grid = $board1.show
+      @grid2 = $board2.show_invis
+      erb :gameplay
+    end
   end
 
+  post '/gameplay' do
+    session[:coord] = params[:coord]
+    redirect ('/gameplay')
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
