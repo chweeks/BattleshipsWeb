@@ -12,7 +12,7 @@ class Board
   end
 
 	def show
-    output = "<div style= 'width: 600px; height: 680px; float:right'>"
+		output = ""
 	  [*"A".."J"].each do |l|
 	    [*1..10].each do |n|
 	      if grid["#{l}#{n}".to_sym].hit? && grid["#{l}#{n}".to_sym].content.is_a?(Ship)
@@ -42,7 +42,7 @@ class Board
 	      end
 	    end
 	  end
-		output += "</div>"
+		output
 	end
 
 	def place(ship, coord, orientation = :horizontally)

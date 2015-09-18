@@ -33,9 +33,10 @@ class BattleshipsWeb < Sinatra::Base
       $board1.place(Ship.battleship, session[:coord_bat].to_sym, :horizontally)
       $board1.place(Ship.submarine, session[:coord_sub].to_sym, :horizontally)
       $board1.place(Ship.patrol_boat, session[:coord_pb].to_sym, :horizontally)
-      erb :gameplay
+      redirect ('/gameplay')
     else
       $board1 = Board.new(Cell)
+      $board2 = Board.new(Cell)
       @name = session[:name]
       @grid = $board1.show
       erb :game_setup
@@ -52,6 +53,9 @@ class BattleshipsWeb < Sinatra::Base
   end
 
   get '/gameplay' do
+    @name = session[:name]
+    @grid = $board1.show
+    @grid2 = $board2.show
     erb :gameplay
   end
 
