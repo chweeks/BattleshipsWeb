@@ -109,6 +109,14 @@ class Board
 		grid[coordinate].shoot
 	end
 
+	def rand_shoot
+		begin
+		  shoot_at(rand_coord)
+	  rescue
+			rand_shoot
+		end
+	end
+
 	def ships
 		grid.values.select{|cell|is_a_ship?(cell)}.map(&:content).uniq
 	end

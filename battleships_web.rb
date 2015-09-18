@@ -56,10 +56,11 @@ class BattleshipsWeb < Sinatra::Base
       @name = session[:name]
       @coord = session[:coord].to_sym
       $board2.shoot_at(@coord)
+      $board1.rand_shoot
       return erb :game_over_win if !$board2.floating_ships?
       return erb :game_over_lose if !$board2.floating_ships?
       @grid = $board1.show
-      @grid2 = $board2.show_invis
+      @grid2 = $board2.show
       erb :gameplay
     else
       $board2 = Board.new(Cell)
